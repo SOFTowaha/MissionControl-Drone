@@ -27,7 +27,11 @@ unsigned long startTime;
 
 SFE_BMP180 bmp180;
 Esp8266EasyIoT esp; 
-
+#define AP_USERNAME "******"
+#define AP_PASSWORD "******"
+#define INSTANCE_ID "******"
+const char* ssid = "The WiFi Name";
+const char* password = "WiFI Password";
 Esp8266EasyIoTMsg msgTemp(CHILD_ID_TEMP, V_TEMP);
 Esp8266EasyIoTMsg msgPress(CHILD_ID_BARO, V_PRESSURE);
 Esp8266EasyIoTMsg msgForec(CHILD_ID_BARO, V_FORECAST);
@@ -36,6 +40,7 @@ void setup()
 {  
   Serial1.begin(9600); // ESP
   Serial.begin(115200); // debug
+  WiFi.begin(ssid, password);
 
   if (bmp180.begin())
     Serial.println("BMP180 initialization successful");
